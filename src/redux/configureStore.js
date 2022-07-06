@@ -6,8 +6,6 @@ import nasaReducer from './nasa';
 const rootReducer = combineReducers({
   nasaData: nasaReducer,
 });
-
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
-
 
 export default store;

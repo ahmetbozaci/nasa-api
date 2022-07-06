@@ -14,8 +14,6 @@ const getData = async (dispatch) => {
     }
   });
   dispatch(loadData(imageData));
-
 };
-
 
 export default getData;

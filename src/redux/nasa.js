@@ -15,6 +15,4 @@ export const loadData = (apiState) => ({
   payload: apiState,
 });
 
-
-
 export default reducer;
