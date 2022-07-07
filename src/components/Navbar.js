@@ -5,7 +5,7 @@ import Search from './Search';
 
 const Navbar = () => (
   <div>
-    <p>Navbar</p>
+    <h1>Navbar</h1>
     <Search />
   </div>
 );
