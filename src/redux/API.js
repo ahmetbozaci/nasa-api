@@ -1,19 +1,14 @@
 import { loadData } from './nasa';
 
-const URL = 'https://images-api.nasa.gov/search?q=apollo';
+const mainURL = 'https://images-api.nasa.gov/search?q=';
 
-const getData = async (dispatch) => {
-  const response = await fetch(URL);
+const getData = (searchText) => async (dispatch) => {
+  const searchURL = `${mainURL}${searchText}&media_type=image`;
+  console.log(searchURL);
+  const response = await fetch(searchURL);
   const data = await response.json();
   const { items } = data.collection;
-
-  const imageData = [];
-  items.forEach((item) => {
-    if (item.data[0].media_type === 'image') {
-      imageData.push(item);
-    }
-  });
-  dispatch(loadData(imageData));
+  dispatch(loadData(items));
 };
 
 export default getData;

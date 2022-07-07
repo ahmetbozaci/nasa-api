@@ -1,13 +1,13 @@
-import React from 'react'
-import Search from './Search'
+/** @format */
 
-const Navbar = () => {
-  return (
-    <div>
-      <p>Navbar</p>
-      <Search />
-    </div>
-  )
-}
+import React from 'react';
+import Search from './Search';
 
-export default Navbar
+const Navbar = () => (
+  <div>
+    <p>Navbar</p>
+    <Search />
+  </div>
+);
+
+export default Navbar;
