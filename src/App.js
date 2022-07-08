@@ -1,15 +1,14 @@
-/** @format */
-
 import React from 'react';
-import Navbar from './components/Navbar';
-import Show from './components/Show';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import Search from './components/Search';
 
 const App = () => (
-  <div>
-    <Navbar />
-    <hr />
-    <Show />
-  </div>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Search />} />
+    </Routes>
+  </BrowserRouter>
+
 );
 
 export default App;
