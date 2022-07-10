@@ -1,12 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import getData from '../redux/searchResult/API';
 
 const Show = () => {
-  const nasa = useSelector((state) => state.nasaData);
+  const allData = useSelector((state) => state.nasaData.allData);
+  const dispatch = useDispatch();
+  console.log('all', allData);
+  const handleClick = (id) => {
+    dispatch(getData(id));
+  };
   return (
     <div>
 
-      {nasa && nasa.map((item) => (
+      {allData && allData.map((item) => (
 
         <div key={item.data[0].nasa_id}>
           <p>
@@ -21,9 +28,10 @@ const Show = () => {
             <b>Photographer&apos;s Name:</b>
             {item.data[0].photographer !== undefined ? item.data[0].photographer : 'Not found'}
           </p>
-          <a href="www">
+          <Link to="/details" props="something" onClick={() => handleClick(item.data[0].nasa_id)}>
             <img alt={item.data[0].title} src={item.links[0].href} width="50%" />
-          </a>
+          </Link>
+
           <p>Show Details</p>
           <hr />
         </div>

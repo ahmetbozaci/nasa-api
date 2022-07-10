@@ -8,7 +8,6 @@ import Show from './Show';
 const Search = () => {
   const nasa = useSelector((state) => state);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [state, setState] = useState({
     name: '',
     yearStart: '',
@@ -60,6 +59,7 @@ const Search = () => {
         <input
           type="number"
           min="1950"
+          max="2023"
           placeholder="The start year for results"
           name="yearStart"
           value={yearStart}
@@ -68,6 +68,7 @@ const Search = () => {
         <input
           type="number"
           min="1950"
+          max="2023"
           placeholder="The end year for results"
           name="yearEnd"
           value={yearEnd}
