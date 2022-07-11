@@ -1,14 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import getData from '../redux/searchResult/API';
+import { useSelector } from 'react-redux';
 
 const Details = () => {
   const oneData = useSelector((state) => state.nasaData.oneData);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+  const picData = useSelector((state) => state.nasaData.picData);
+  const pic = picData.map((item) => item.href);
   return (
     <div>
       {oneData && oneData.map((item) => (
@@ -25,8 +20,7 @@ const Details = () => {
           <p>
             <b>İMAGES</b>
             {item.data[0].date_created !== undefined ? item.data[0].date_created : 'Not found'}
-            {/* <img alt={item.data[0].title} src={item.href.json()[0]} width="50%" /> */}
-
+            <img alt={item.data[0].title} src={pic[3]} width="50%" />
           </p>
           <img alt={item.data[0].title} src={item.links[0].href} width="50%" />
           <p>

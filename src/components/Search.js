@@ -1,12 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import getData from '../redux/searchResult/API';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { getData } from '../redux/searchResult/API';
 import Show from './Show';
 
 const Search = () => {
-  const nasa = useSelector((state) => state);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     name: '',
@@ -15,10 +12,6 @@ const Search = () => {
   });
 
   const { name, yearStart, yearEnd } = state;
-
-  // useEffect(() => {
-  //   navigate('/doctors');
-  // });
 
   const changeSearchText = () => {
     const nameLower = name.toLowerCase();

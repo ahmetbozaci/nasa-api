@@ -1,14 +1,14 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import getData from '../redux/searchResult/API';
+import { getData, getAssets } from '../redux/searchResult/API';
 
 const Show = () => {
   const allData = useSelector((state) => state.nasaData.allData);
   const dispatch = useDispatch();
-  console.log('all', allData);
+
   const handleClick = (id) => {
     dispatch(getData(id));
+    dispatch(getAssets(id));
   };
   return (
     <div>
