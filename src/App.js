@@ -1,10 +1,17 @@
+import React from 'react';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import Details from './components/Details';
+import Search from './components/Search';
+import './App.css';
 
-import React from 'react'
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Search />} />
+      <Route path="/details" element={<Details />} />
+    </Routes>
+  </BrowserRouter>
 
-const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+);
 
-export default App
+export default App;
