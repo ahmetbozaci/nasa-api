@@ -1,11 +1,15 @@
+/* eslint-disable no-unused-vars */
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Details = () => {
   const oneData = useSelector((state) => state.nasaData.oneData);
-  const picData = useSelector((state) => state.nasaData.picData);
-  const pic = picData.map((item) => item.href);
+  const assets = useSelector((state) => state.nasaData.assets);
+  const navigate = useNavigate();
   return (
     <div>
+      <button type="button" onClick={() => navigate(-1)}>go back</button>
+
       {oneData && oneData.map((item) => (
 
         <div key={item.data[0].nasa_id}>
@@ -20,7 +24,7 @@ const Details = () => {
           <p>
             <b>İMAGES</b>
             {item.data[0].date_created !== undefined ? item.data[0].date_created : 'Not found'}
-            <img alt={item.data[0].title} src={pic[3]} width="50%" />
+            {/* <img alt={item.data[0].title} src={pic[3]} width="50%" /> */}
           </p>
           <img alt={item.data[0].title} src={item.links[0].href} width="50%" />
           <p>

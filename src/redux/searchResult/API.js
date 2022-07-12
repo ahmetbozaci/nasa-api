@@ -1,4 +1,4 @@
-import { loadAllData, loadOneData, loadPicData } from './search';
+import { loadAllData, loadOneData, loadAssets } from './search';
 
 const mainURL = 'https://images-api.nasa.gov/';
 
@@ -19,7 +19,7 @@ const getAssets = (searchText) => async (dispatch) => {
   const response = await fetch(searchURL);
   const data = await response.json();
   const { items } = data.collection;
-  dispatch(loadPicData(items));
+  dispatch(loadAssets(items));
 };
 
 export { getAssets, getData };

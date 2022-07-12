@@ -10,33 +10,40 @@ const Show = () => {
     dispatch(getData(id));
     dispatch(getAssets(id));
   };
+
+  const dataIsFound = (text) => (text !== undefined ? text : <b>Not Found</b>);
+
   return (
-    <div>
+    <>
+      {allData && allData.map((item) => {
+        const {
+          title, location, photographer, nasa_id: id,
+        } = item.data[0];
+        const { href: link } = item.links[0];
+        return (
+          <div key={id}>
+            <p>
+              <b>TITLE: </b>
+              {dataIsFound(title)}
 
-      {allData && allData.map((item) => (
+            </p>
+            <p>
+              <b>LOCATION: </b>
+              {dataIsFound(location)}
 
-        <div key={item.data[0].nasa_id}>
-          <p>
-            <b>title:</b>
-            {item.data[0].title !== undefined ? item.data[0].title : 'Not found'}
-          </p>
-          <p>
-            <b>location:</b>
-            {item.data[0].location !== undefined ? item.data[0].location : 'Not found'}
-          </p>
-          <p>
-            <b>Photographer&apos;s Name:</b>
-            {item.data[0].photographer !== undefined ? item.data[0].photographer : 'Not found'}
-          </p>
-          <Link to="/details" props="something" onClick={() => handleClick(item.data[0].nasa_id)}>
-            <img alt={item.data[0].title} src={item.links[0].href} width="50%" />
-          </Link>
-
-          <p>Show Details</p>
-          <hr />
-        </div>
-      ))}
-    </div>
+            </p>
+            <p>
+              <b>Photographer: </b>
+              {dataIsFound(photographer)}
+            </p>
+            <Link to="/details" props="something" onClick={() => handleClick(id)}>
+              <img alt={title} src={link} width="50%" />
+            </Link>
+            <hr />
+          </div>
+        );
+      })}
+    </>
   );
 };
 
