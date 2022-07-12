@@ -14,7 +14,7 @@ const Show = () => {
 
   return (
     <>
-      {allData && allData.map((item) => {
+      {allData.length === 0 ? 'Not Found You can change the search criteria in the search bar or the search builder.' : allData && allData.map((item) => {
         const {
           title, location, photographer, nasa_id: id,
         } = item.data[0];
