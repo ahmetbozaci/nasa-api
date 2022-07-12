@@ -1,4 +1,4 @@
-import { loadAllData, loadOneData, loadAssets } from './search';
+import { loadAllData, loadOneData, loadAssets } from './searchReducer';
 
 const mainURL = 'https://images-api.nasa.gov/';
 

@@ -1,17 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getData, getAssets } from '../redux/searchResult/API';
+import dataIsFound from './Utils/dataIsFound';
+import { getData, getAssets } from '../redux/API';
 
 const Show = () => {
-  const allData = useSelector((state) => state.nasaData.allData);
+  const { allData } = useSelector((state) => state.nasaData);
   const dispatch = useDispatch();
 
   const handleClick = (id) => {
     dispatch(getData(id));
     dispatch(getAssets(id));
   };
-
-  const dataIsFound = (text) => (text !== undefined ? text : <b>Not Found</b>);
 
   return (
     <>
@@ -36,7 +35,7 @@ const Show = () => {
               <b>Photographer: </b>
               {dataIsFound(photographer)}
             </p>
-            <Link to="/details" props="something" onClick={() => handleClick(id)}>
+            <Link to="/details" onClick={() => handleClick(id)}>
               <img alt={title} src={link} width="50%" />
             </Link>
             <hr />

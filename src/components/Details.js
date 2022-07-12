@@ -1,51 +1,66 @@
-/* eslint-disable no-unused-vars */
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import dataIsFound from './Utils/dataIsFound';
 
 const Details = () => {
-  const oneData = useSelector((state) => state.nasaData.oneData);
-  const assets = useSelector((state) => state.nasaData.assets);
+  const { oneData } = useSelector((state) => state.nasaData);
   const navigate = useNavigate();
   return (
     <div>
-      <button type="button" onClick={() => navigate(-1)}>go back</button>
+      <button type="button" onClick={() => navigate(-1)}>
+        go back
+      </button>
 
-      {oneData && oneData.map((item) => (
-
-        <div key={item.data[0].nasa_id}>
-          <p>
-            <b>title:</b>
-            {item.data[0].title !== undefined ? item.data[0].title : 'Not found'}
-          </p>
-          <p>
-            <b>Photographer&apos;s Name:</b>
-            {item.data[0].photographer !== undefined ? item.data[0].photographer : 'Not found'}
-          </p>
-          <p>
-            <b>İMAGES</b>
-            {item.data[0].date_created !== undefined ? item.data[0].date_created : 'Not found'}
-            {/* <img alt={item.data[0].title} src={pic[3]} width="50%" /> */}
-          </p>
-          <img alt={item.data[0].title} src={item.links[0].href} width="50%" />
-          <p>
-            <b>Location:</b>
-            {item.data[0].location !== undefined ? item.data[0].photographer : 'Not found'}
-          </p>
-          <p>
-            <b>Description:</b>
-            {item.data[0].description !== undefined ? item.data[0].description : 'Not found'}
-          </p>
-          <p>
-            <b>Date Created:</b>
-            {item.data[0].date_created !== undefined ? item.data[0].date_created : 'Not found'}
-          </p>
-          <p>
-            <b>Keywords:</b>
-            {item.data[0].keywords !== undefined ? item.data[0].keywords.join(', ') : 'Not found'}
-          </p>
-        </div>
-      ))}
-
+      {oneData
+        && oneData.map((item) => {
+          const {
+            title,
+            location,
+            photographer,
+            nasa_id: id,
+            description,
+            date_created: date,
+            keywords,
+          } = item.data[0];
+          const { href: link } = item.links[0];
+          return (
+            <div key={id}>
+              <p>
+                <b>title:</b>
+                {dataIsFound(title)}
+              </p>
+              <p>
+                <b>Photographer&apos;s Name:</b>
+                {dataIsFound(photographer)}
+              </p>
+              <p>
+                <b>İMAGES</b>
+                {/* <img alt={item.data[0].title} src={pic[3]} width="50%" /> */}
+              </p>
+              <img
+                alt={title}
+                src={link}
+                width="50%"
+              />
+              <p>
+                <b>Location:</b>
+                {dataIsFound(location)}
+              </p>
+              <p>
+                <b>Description:</b>
+                {dataIsFound(description)}
+              </p>
+              <p>
+                <b>Date Created:</b>
+                {dataIsFound(date)}
+              </p>
+              <p>
+                <b>Keywords:</b>
+                {keywords !== undefined ? keywords.join(', ') : 'Not found'}
+              </p>
+            </div>
+          );
+        })}
     </div>
   );
 };

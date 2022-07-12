@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { getData } from '../redux/searchResult/API';
+import { getData } from '../redux/API';
 import Show from './Show';
 
 const Search = () => {
   const dispatch = useDispatch();
+
   const [state, setState] = useState({
     name: '',
     yearStart: '',
@@ -37,7 +38,6 @@ const Search = () => {
     const { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -73,5 +73,4 @@ const Search = () => {
     </div>
   );
 };
-
 export default Search;

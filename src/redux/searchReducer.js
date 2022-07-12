@@ -1,13 +1,17 @@
+//! Action Type
+
 const LOAD_ALL_DATA = 'nasaAPI/nasaImage/LOAD_ALL_DATA';
 const LOAD_ONE_DATA = 'nasaAPI/nasaImage/LOAD_ONE_DATA';
 const LOAD_ASSETS = 'nasaAPI/nasaImage/LOAD_ASSETS';
 
+//! State
 const initialState = {
   allData: [],
   oneData: [],
   assets: [],
 };
 
+//! Reducer
 const reducer = (state = initialState, action) => {
   const { payload, type } = action;
   switch (type) {
@@ -22,18 +26,21 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export const loadAllData = (apiState) => ({
+//! Actions
+const loadAllData = (apiState) => ({
   type: LOAD_ALL_DATA,
   payload: apiState,
 });
 
-export const loadOneData = (apiState) => ({
+const loadOneData = (apiState) => ({
   type: LOAD_ONE_DATA,
   payload: apiState,
 });
 
-export const loadAssets = (apiState) => ({
+const loadAssets = (apiState) => ({
   type: LOAD_ASSETS,
   payload: apiState,
 });
+
 export default reducer;
+export { loadAllData, loadOneData, loadAssets };

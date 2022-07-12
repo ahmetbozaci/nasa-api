@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import logger from 'redux-logger';
-import nasaReducer from './searchResult/search';
+import nasaReducer from './searchReducer';
 
 const store = configureStore({
   reducer: {
