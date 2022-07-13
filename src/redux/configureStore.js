@@ -1,11 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import nasaReducer from './searchResult/search';
+import { configureStore } from '@reduxjs/toolkit';
 
-const rootReducer = combineReducers({
-  nasaData: nasaReducer,
+import logger from 'redux-logger';
+import nasaReducer from './searchReducer';
+
+const store = configureStore({
+  reducer: {
+    nasaData: nasaReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 export default store;
