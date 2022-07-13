@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Details from './components/Details';
