@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Row, Col, Container } from 'reactstrap';
+import { Image } from 'react-bootstrap';
 import dataIsFound from './Utils/dataIsFound';
 import { getData, getAssets } from '../redux/API';
 
@@ -13,36 +15,50 @@ const Show = () => {
   };
 
   return (
-    <>
-      {allData.length === 0 ? 'Not Found You can change the search criteria in the search bar or the search builder.' : allData && allData.map((item) => {
-        const {
-          title, location, photographer, nasa_id: id,
-        } = item.data[0];
-        const { href: link } = item.links[0];
-        return (
-          <div key={id}>
-            <p>
-              <b>TITLE: </b>
-              {dataIsFound(title)}
-
-            </p>
-            <p>
-              <b>LOCATION: </b>
-              {dataIsFound(location)}
-
-            </p>
-            <p>
-              <b>Photographer: </b>
-              {dataIsFound(photographer)}
-            </p>
-            <Link to="/details" onClick={() => handleClick(id)}>
-              <img alt={title} src={link} width="50%" />
-            </Link>
-            <hr />
+    <Container>
+      {allData.length === 0
+        ? (
+          <div>
+            <p>Not Found</p>
+            <p>Please change the search criteria</p>
           </div>
-        );
-      })}
-    </>
+        )
+        : allData && allData.map((item) => {
+          const {
+            title,
+            location,
+            photographer,
+            nasa_id: id,
+          } = item.data[0];
+          const { href: link } = item.links[0];
+          return (
+            <Row key={id} className="my-4">
+              <Col xs={12} md={5} className="">
+                <Link to="/details" onClick={() => handleClick(id)}>
+                  <Image
+                    alt={title}
+                    src={link}
+                    width="400"
+                    height="250"
+                    fluid
+                    rounded
+                  />
+                </Link>
+              </Col>
+              <Col className="m-auto"><h6>{dataIsFound(title)}</h6></Col>
+              <Col className="m-auto">
+                <b>Location: </b>
+                <p>{dataIsFound(location)}</p>
+              </Col>
+              <Col className="m-auto">
+                <b>Photographer: </b>
+                <p>{dataIsFound(photographer)}</p>
+              </Col>
+            </Row>
+
+          );
+        })}
+    </Container>
   );
 };
 

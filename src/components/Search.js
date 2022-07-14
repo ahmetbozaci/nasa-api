@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { Button, Form, Input } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 import { getData } from '../redux/API';
 import Show from './Show';
 
 const Search = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [state, setState] = useState({
     name: '',
@@ -39,36 +43,41 @@ const Search = () => {
     setState({ ...state, [name]: value });
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Text search"
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          min="1950"
-          max="2023"
-          placeholder="The start year for results"
-          name="yearStart"
-          value={yearStart}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          min="1950"
-          max="2023"
-          placeholder="The end year for results"
-          name="yearEnd"
-          value={yearEnd}
-          onChange={handleChange}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <div className="">
+      <div className="d-flex justify-content-center mb-5">
+        <Form onSubmit={handleSubmit} className="d-flex">
+          <Input
+            placeholder="Text search"
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            required
+            className="mx-2"
+          />
+          <Input
+            type="number"
+            min="1950"
+            max="2023"
+            placeholder="Start year for result"
+            name="yearStart"
+            value={yearStart}
+            onChange={handleChange}
+            className="mx-2"
+          />
+          <Input
+            type="number"
+            min="1950"
+            max="2023"
+            placeholder="End year for result"
+            name="yearEnd"
+            value={yearEnd}
+            onChange={handleChange}
+            className="mx-2"
+          />
+          <Button type="submit" className="">Search</Button>
+        </Form>
+      </div>
       <Show />
     </div>
   );
