@@ -7,7 +7,6 @@ import assetIsFound from './Utils/assetIsFound';
 const Details = () => {
   const { oneData, assets } = useSelector((state) => state.nasaData);
   const navigate = useNavigate();
-
   return (
     <Container>
       {oneData
