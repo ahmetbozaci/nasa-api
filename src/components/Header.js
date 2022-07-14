@@ -11,12 +11,12 @@ const Header = () => (
       <Navbar.Brand as={Link} to="/">
         <img
           src={nasa}
-          width="40"
-          height="40"
+          width="50"
+          height="50"
           className="d-inline-block me-2"
           alt="Nasa Logo"
         />
-        Nasa Image Collection
+        <span className="d-none d-sm-inline-block">Nasa Image Collection</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <NavbarCollapse id="responsive-navbar-nav">
