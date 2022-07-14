@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
-import { Image } from 'react-bootstrap';
 import dataIsFound from './Utils/dataIsFound';
+import assetIsFound from './Utils/assetIsFound';
 
 const Details = () => {
   const { oneData, assets } = useSelector((state) => state.nasaData);
-  console.log('Assets', assets);
   const navigate = useNavigate();
 
   return (
@@ -29,13 +28,7 @@ const Details = () => {
                 {dataIsFound(title)}
               </h4>
               <figure>
-                <Image
-                  alt={title}
-                  src={link}
-                  fluid
-                  rounded
-                  thumbnail
-                />
+                {assetIsFound(assets, title, link)}
                 <figcaption>
                   {' '}
                   <strong className="text-success">Photographer: </strong>
