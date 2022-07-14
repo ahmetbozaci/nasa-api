@@ -1,16 +1,16 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Button, Container } from 'reactstrap';
+import { Image } from 'react-bootstrap';
 import dataIsFound from './Utils/dataIsFound';
 
 const Details = () => {
-  const { oneData } = useSelector((state) => state.nasaData);
+  const { oneData, assets } = useSelector((state) => state.nasaData);
+  console.log('Assets', assets);
   const navigate = useNavigate();
-  return (
-    <div>
-      <button type="button" onClick={() => navigate(-1)}>
-        go back
-      </button>
 
+  return (
+    <Container>
       {oneData
         && oneData.map((item) => {
           const {
@@ -24,44 +24,47 @@ const Details = () => {
           } = item.data[0];
           const { href: link } = item.links[0];
           return (
-            <div key={id}>
-              <p>
-                <b>title:</b>
+            <div key={id} className="text-sm-center">
+              <h4>
                 {dataIsFound(title)}
-              </p>
-              <p>
-                <b>Photographer&apos;s Name:</b>
-                {dataIsFound(photographer)}
-              </p>
-              <p>
-                <b>İMAGES</b>
-                {/* <img alt={item.data[0].title} src={pic[3]} width="50%" /> */}
-              </p>
-              <img
-                alt={title}
-                src={link}
-                width="50%"
-              />
-              <p>
-                <b>Location:</b>
-                {dataIsFound(location)}
-              </p>
-              <p>
-                <b>Description:</b>
-                {dataIsFound(description)}
-              </p>
-              <p>
-                <b>Date Created:</b>
-                {dataIsFound(date)}
-              </p>
-              <p>
-                <b>Keywords:</b>
-                {keywords !== undefined ? keywords.join(', ') : 'Not found'}
-              </p>
+              </h4>
+              <figure>
+                <Image
+                  alt={title}
+                  src={link}
+                  fluid
+                  rounded
+                  thumbnail
+                />
+                <figcaption>
+                  {' '}
+                  <strong className="text-success">Photographer: </strong>
+                  <span>{dataIsFound(photographer)}</span>
+                </figcaption>
+              </figure>
+              <div className="mb-3">
+                <strong className="text-success">Location: </strong>
+                <span>{dataIsFound(location)}</span>
+              </div>
+              <div className="mb-3">
+                <strong className="text-success">Description: </strong>
+                <span className="text-muted">{dataIsFound(description)}</span>
+              </div>
+              <div className="mb-3">
+                <strong className="text-success">Date Created: </strong>
+                <span className="text-muted">{dataIsFound(date)}</span>
+              </div>
+              <div className="mb-3">
+                <strong className="text-success">Keywords: </strong>
+                <span className="text-muted">{keywords !== undefined ? keywords.join(', ') : 'Not found'}</span>
+              </div>
             </div>
           );
         })}
-    </div>
+      <Button type="button" onClick={() => navigate(-1)} className="btn-warning mb-2">
+        BACK TO THE SEARCH PAGE
+      </Button>
+    </Container>
   );
 };
 
