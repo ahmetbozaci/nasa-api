@@ -35,7 +35,8 @@ const Show = (props) => {
           return (
             <Row key={id} className="my-4">
               <Col xs={12} md={5} className="">
-                <Link to="/details" onClick={() => handleClick(id)}>
+
+                <Link to="/details">
                   <Image
                     alt={title}
                     src={link}
@@ -43,6 +44,7 @@ const Show = (props) => {
                     height="250"
                     fluid
                     rounded
+                    onClick={() => handleClick(id)}
                   />
                 </Link>
               </Col>
