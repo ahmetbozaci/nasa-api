@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import nasa from './assets/nasa.png';
 
 const Header = () => (
-  <Navbar expand="sm" bg="dark" variant="dark" className="mb-5">
+  <Navbar expand="sm" bg="dark" variant="dark" className="mb-4">
     <Container>
       <Navbar.Brand as={Link} to="/">
         <img
           src={nasa}
-          width="50"
-          height="50"
+          width="40"
+          height="40"
           className="d-inline-block me-2"
           alt="Nasa Logo"
         />
@@ -25,7 +25,7 @@ const Header = () => (
             href="https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf"
             target="_blank"
           >
-            About The API
+            About The NASA API
           </Nav.Link>
         </Nav>
       </NavbarCollapse>

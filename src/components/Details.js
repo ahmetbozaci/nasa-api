@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 import { Image } from 'react-bootstrap';
 import dataIsFound from './Utils/dataIsFound';
 
@@ -8,11 +8,7 @@ const Details = () => {
   const { oneData } = useSelector((state) => state.nasaData);
   const navigate = useNavigate();
   return (
-    <div>
-      <Button type="button" onClick={() => navigate(-1)} className="btn-warning">
-        GO BACK
-      </Button>
-
+    <Container>
       {oneData
         && oneData.map((item) => {
           const {
@@ -26,7 +22,7 @@ const Details = () => {
           } = item.data[0];
           const { href: link } = item.links[0];
           return (
-            <div key={id} className="text-center container">
+            <div key={id} className="text-sm-center">
               <h4>
                 {dataIsFound(title)}
               </h4>
@@ -34,7 +30,7 @@ const Details = () => {
                 <b>İMAGES</b>
                 <img alt={item.data[0].title} src={pic[3]} width="50%" />
               </p> */}
-              <figure className="mb-5">
+              <figure>
                 <Image
                   alt={title}
                   src={link}
@@ -67,7 +63,10 @@ const Details = () => {
             </div>
           );
         })}
-    </div>
+      <Button type="button" onClick={() => navigate(-1)} className="btn-warning mb-2">
+        BACK TO THE SEARCH PAGE
+      </Button>
+    </Container>
   );
 };
 
