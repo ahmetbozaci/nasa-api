@@ -14,7 +14,7 @@ const Search = () => {
     name: '',
     yearStart: '',
     yearEnd: '',
-    errorText: <h4>Fill the inputs and click the search button to see the results</h4>,
+    errorText: 'Fill the inputs and click the search button to see the results',
   });
 
   const {
@@ -46,8 +46,6 @@ const Search = () => {
   <div>
     <h4>Data Not Found</h4>
     <h4>Please change the search criteria</h4>
-    {' '}
-
   </div>,
       });
     }

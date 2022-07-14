@@ -15,12 +15,13 @@ const Show = (props) => {
     dispatch(getData(id));
     dispatch(getAssets(id));
   };
+
   return (
     <Container>
       {allData.length === 0
         ? (
           <div className="text-center text-danger pt-5">
-            {errorText}
+            <h4>{errorText}</h4>
           </div>
         )
         : allData && allData.map((item) => {
@@ -63,7 +64,10 @@ const Show = (props) => {
 };
 
 Show.propTypes = {
-  errorText: PropTypes.string.isRequired,
+  errorText: PropTypes.string,
+};
+Show.defaultProps = {
+  errorText: '',
 };
 
 export default Show;

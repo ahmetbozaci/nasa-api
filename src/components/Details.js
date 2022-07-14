@@ -5,8 +5,10 @@ import { Image } from 'react-bootstrap';
 import dataIsFound from './Utils/dataIsFound';
 
 const Details = () => {
-  const { oneData } = useSelector((state) => state.nasaData);
+  const { oneData, assets } = useSelector((state) => state.nasaData);
+  console.log('Assets', assets);
   const navigate = useNavigate();
+
   return (
     <Container>
       {oneData
@@ -26,10 +28,6 @@ const Details = () => {
               <h4>
                 {dataIsFound(title)}
               </h4>
-              {/* <p>
-                <b>İMAGES</b>
-                <img alt={item.data[0].title} src={pic[3]} width="50%" />
-              </p> */}
               <figure>
                 <Image
                   alt={title}
