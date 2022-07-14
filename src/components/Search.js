@@ -1,22 +1,25 @@
-/* eslint-disable no-unused-vars */
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Button, Form, Input } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
+import {
+  Button, Container, Form, Input,
+} from 'reactstrap';
 import { getData } from '../redux/API';
 import Show from './Show';
 
 const Search = () => {
+  const { allData } = useSelector((state) => state.nasaData);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [state, setState] = useState({
     name: '',
     yearStart: '',
     yearEnd: '',
+    errorText: <h4>Fill the inputs and click the search button to see the results</h4>,
   });
 
-  const { name, yearStart, yearEnd } = state;
+  const {
+    name, yearStart, yearEnd, errorText,
+  } = state;
 
   const changeSearchText = () => {
     const nameLower = name.toLowerCase();
@@ -36,6 +39,18 @@ const Search = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(getData(changeSearchText()));
+    if (allData.length === 0) {
+      setState({
+        ...state,
+        errorText:
+  <div>
+    <h4>Data Not Found</h4>
+    <h4>Please change the search criteria</h4>
+    {' '}
+
+  </div>,
+      });
+    }
   };
 
   const handleChange = (event) => {
@@ -44,8 +59,8 @@ const Search = () => {
   };
   return (
     <div className="">
-      <div className="d-flex justify-content-center mb-5">
-        <Form onSubmit={handleSubmit} className="d-flex">
+      <Container className="">
+        <Form onSubmit={handleSubmit} className="d-sm-flex">
           <Input
             placeholder="Text search"
             type="text"
@@ -53,7 +68,7 @@ const Search = () => {
             value={name}
             onChange={handleChange}
             required
-            className="mx-2"
+            className="mb-2 mb-sm-0 mx-sm-1"
           />
           <Input
             type="number"
@@ -63,7 +78,7 @@ const Search = () => {
             name="yearStart"
             value={yearStart}
             onChange={handleChange}
-            className="mx-2"
+            className="mb-2 mb-sm-0 mx-sm-1"
           />
           <Input
             type="number"
@@ -73,12 +88,12 @@ const Search = () => {
             name="yearEnd"
             value={yearEnd}
             onChange={handleChange}
-            className="mx-2"
+            className="mb-2 mb-sm-0 mx-sm-1"
           />
-          <Button type="submit" className="">Search</Button>
+          <Button type="submit" className="btn-info mx-sm-1">Search</Button>
         </Form>
-      </div>
-      <Show />
+      </Container>
+      <Show errorText={errorText} />
     </div>
   );
 };

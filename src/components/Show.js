@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Row, Col, Container } from 'reactstrap';
 import { Image } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import dataIsFound from './Utils/dataIsFound';
 import { getData, getAssets } from '../redux/API';
 
-const Show = () => {
+const Show = (props) => {
+  const { errorText } = props;
   const { allData } = useSelector((state) => state.nasaData);
   const dispatch = useDispatch();
 
@@ -13,14 +15,12 @@ const Show = () => {
     dispatch(getData(id));
     dispatch(getAssets(id));
   };
-
   return (
     <Container>
       {allData.length === 0
         ? (
-          <div>
-            <p>Not Found</p>
-            <p>Please change the search criteria</p>
+          <div className="text-center text-danger pt-5">
+            {errorText}
           </div>
         )
         : allData && allData.map((item) => {
@@ -60,6 +60,10 @@ const Show = () => {
         })}
     </Container>
   );
+};
+
+Show.propTypes = {
+  errorText: PropTypes.string.isRequired,
 };
 
 export default Show;
